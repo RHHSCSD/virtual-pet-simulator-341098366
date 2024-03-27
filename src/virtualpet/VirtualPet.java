@@ -19,6 +19,7 @@ public class VirtualPet {
         boolean choosePet = false;
         boolean instructions = false;
         boolean naming = false;
+        boolean generateStats = false;
         
         char consonant;
         
@@ -55,9 +56,9 @@ public class VirtualPet {
 
         //Main menu screen
         System.out.println("Main Menu:\nStart: 1\nInstructions: 2\nExit: 3");
-        String menu = kb.nextLine();
-        menu = menu.toLowerCase();
-        switch (menu){
+        String menuChoice = kb.nextLine();
+        menuChoice = menuChoice.toLowerCase();
+        switch (menuChoice){
             //go to pet selection
             case "1":
             case "start":
@@ -163,9 +164,17 @@ public class VirtualPet {
                 consonant = (char)randomConsonant;
                 //generate name
                 name = consonant + vowel + consonant + vowel;
-                System.out.println("Your pet, named "+name+", has been born!");
-                
             }
+            //output name
+            System.out.println("Your pet, named "+name+", has been born!");
+            naming = false;
+            generateStats = true;
+        }
+        if (generateStats == true){
+            int maxHealth = rn.nextInt(startingPoints-2)+1;
+            int maxFood = rn.nextInt(startingPoints-maxHealth-1)+1;
+            int maxEnergy = startingPoints-maxHealth-maxFood;
+            System.out.println("Your pets max stats are:\nMax Health: "+maxHealth+"\nMax Food: "+maxFood+"\nMax Energy: "+maxEnergy);
         }
         
     
